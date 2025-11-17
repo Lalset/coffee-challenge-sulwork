@@ -1,0 +1,78 @@
+<div class="container-cadastro">
+
+  <h1>Café da Manhã</h1>
+  <h1>Sulwork</h1>
+  
+  <h2>Cadastro de Colaborador</h2>
+
+  <div class="form">
+
+    <!-- Nome -->
+    <label for="nome">Nome</label>
+    <input 
+      id="nome"
+      type="text"
+      required
+      [(ngModel)]="nome"
+    >
+
+    <!-- CPF -->
+    <label for="cpf">CPF</label>
+    <input 
+      id="cpf"
+      type="text"
+      maxlength="14"
+      required
+      [(ngModel)]="cpf"
+      (input)="formatarCPF()"
+    >
+
+    <!-- Data -->
+    <label for="dataCafe">Data do Café</label>
+    <input 
+      id="dataCafe"
+      type="date"
+      required
+      [(ngModel)]="dataCafe"
+    >
+
+    <h3>Itens do Café da Manhã</h3>
+
+    <!-- Adicionar Item -->
+    <div class="add-item">
+      <input
+        id="descricaoItem"
+        type="text"
+        placeholder="Ex: Suco de acerola"
+        [(ngModel)]="descricaoItem"
+      >
+      <button (click)="adicionarItem()">
+        Adicionar
+      </button>
+    </div>
+
+    <!-- Lista de itens -->
+    <ul class="lista-itens">
+      <li *ngFor="let item of itensCafe; let i = index">
+        {{ item.descricao }}
+        <button 
+          class="remove"
+          aria-label="Remover item {{ item.descricao }}"
+          (click)="removerItem(i)"
+        >
+          X
+        </button>
+      </li>
+    </ul>
+
+    <button class="btn" (click)="cadastrar()">
+      Cadastrar
+    </button>
+
+      <!-- BOTÃO PARA IR PARA A LISTA -->
+  <button class="btn btn-lista" (click)="irParaLista()">
+    Ir para lista
+  </button>
+  </div>
+
+</div>

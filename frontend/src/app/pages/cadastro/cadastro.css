@@ -1,0 +1,196 @@
+/* CONTAINER CENTRAL DO CADASTRO */
+.container-cadastro {
+  width: 100%;
+  max-width: 1031px;
+  min-width: 1000px;
+  min-height: 100vh;
+  max-height: 100vh;
+  margin: 0 auto;
+  padding: 35px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background: #70523c;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* TÍTULOS PRINCIPAIS */
+.container-cadastro h1:first-child,
+.container-cadastro h1:nth-child(2) {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  text-align: center;
+  color: #FFD166; 
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+.container-cadastro h1:first-child {
+  margin-bottom: 10px;
+}
+
+.container-cadastro h1:nth-child(2) {
+  margin-bottom: 30px;
+}
+
+/* SUBTÍTULOS */
+h2, h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #F6EFE7;
+}
+
+/* FORMULÁRIO */
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* LABELS */
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  color: #F6EFE7;
+}
+
+/* INPUTS */
+input {
+  width: 100%;
+  height: 42px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2980b9;
+  box-shadow: 0 0 4px rgba(41, 128, 185, 0.4);
+}
+
+/* BOTÃO PRINCIPAL */
+button.btn {
+  padding: 14px;
+  background-color: #C67C48;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  transition: 0.2s;
+}
+
+button.btn:hover {
+  background-color: #555;
+  transform: scale(1.02);
+}
+
+/* LISTA DE ITENS */
+.lista-itens {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* CADA ITEM */
+.lista-itens li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 10px 14px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  min-height: 42px;
+}
+
+/* BOTÃO DE REMOVER ITEM */
+.remove {
+  background: #e74c3c;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  transition: 0.2s;
+}
+
+.remove:hover {
+  background: #c0392b;
+  transform: scale(1.05);
+}
+
+/* ÁREA DE ADICIONAR ITEM */
+.add-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add-item input {
+  flex: 1;
+  height: 42px;
+}
+
+.add-item button {
+  height: 42px;
+  padding: 0 18px;
+  background-color: #C67C48;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.add-item button:hover {
+  background-color: #555;
+  transform: scale(1.02);
+}
+
+/* BOTÃO DE IR PARA LISTA */
+.btn-lista {
+  margin-bottom: 20px;
+  background-color: #4a90e2;
+}
+
+.btn-lista:hover {
+  background-color: #3b78b8;
+}
+
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+  .container-cadastro {
+    width: 95%;
+    padding: 25px;
+    min-width: auto;
+  }
+
+  .container-cadastro h1:first-child,
+  .container-cadastro h1:nth-child(2) {
+    font-size: 2rem;
+  }
+}
