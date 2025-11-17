@@ -1,0 +1,106 @@
+<div class="container-lista">
+
+  <button class="btn-voltar" (click)="irParaCadastro()">Voltar ao Cadastro</button>
+
+  <h1>Lista de Participantes</h1>
+
+  <!-- FILTRO -->
+  <div class="filtro">
+    <label for="filtroData">Filtrar por data:</label>
+    <input 
+      id="filtroData"
+      type="date"
+      [(ngModel)]="dataFiltro"
+      (change)="filtrar()"
+    >
+  </div>
+
+  <!-- CARREGANDO -->
+  <div *ngIf="carregando" class="loading">
+    Carregando...
+  </div>
+
+  <!-- LISTA VAZIA -->
+  <div *ngIf="!carregando && colaboradoresFiltrados.length === 0" class="vazio">
+    Nenhum colaborador encontrado nessa data.
+  </div>
+
+
+  <!-- LISTA -->
+  <ul class="lista" *ngIf="!carregando && colaboradoresFiltrados.length > 0">
+    <li *ngFor="let c of colaboradoresFiltrados" class="colaborador">
+
+      <!-- MODO EDIÇÃO -->
+      <ng-container *ngIf="c.editando; else modoVisual">
+
+        <div class="linha-edicao">
+          <label>Nome:</label>
+          <input class="input" type="text" [(ngModel)]="c.nome">
+        </div>
+
+        <div class="linha-edicao">
+          <label>CPF:</label>
+          <input class="input" type="text" [(ngModel)]="c.cpf">
+        </div>
+
+        <div class="linha-edicao">
+          <label>Data do Café:</label>
+          <input class="input" type="date" [(ngModel)]="c.dataCafe">
+        </div>
+
+        <h3 class="titulo-itens">Itens</h3>
+
+        <ul class="itens">
+          <li *ngFor="let item of c.itensCafe" class="item-editar">
+            <input type="checkbox" [(ngModel)]="item.trouxe">
+
+            <input 
+              type="text" 
+              [(ngModel)]="item.descricao"
+              class="input-item"
+              placeholder="Descrição do item"
+            >
+          </li>
+        </ul>
+
+        <div class="acoes">
+          <button class="salvar" (click)="salvarEdicao(c)">Salvar</button>
+          <button class="cancelar" (click)="cancelarEdicao(c)">Cancelar</button>
+        </div>
+
+      </ng-container>
+
+      <!-- MODO VISUAL -->
+      <ng-template #modoVisual>
+        <h2>{{ c.nome }}</h2>
+
+        <p><strong>CPF:</strong> {{ c.cpf }}</p>
+        <p><strong>Data do café:</strong> {{ c.dataCafe | date:"dd/MM/yyyy" }}</p>
+
+        <h3 class="titulo-itens">Itens</h3>
+        <ul class="itens">
+          <li *ngFor="let item of c.itensCafe">
+            <input
+              type="checkbox"
+              [checked]="item.trouxe"
+              (change)="marcarTrouxe(item)"
+            >
+            <span class="descricao-item">{{ item.descricao }}</span>
+
+            <span [ngClass]="item.trouxe ? 'ok' : 'nao'">
+              {{ item.trouxe ? "Trouxe" : "Não trouxe" }}
+            </span>
+          </li>
+        </ul>
+
+        <div class="acoes">
+          <button class="editar" (click)="editarColaborador(c)">Editar</button>
+          <button class="remover" (click)="removerColaborador(c)">Remover</button>
+        </div>
+
+      </ng-template>
+
+    </li>
+  </ul>
+
+</div>
