@@ -1,0 +1,21 @@
+# Java
+/target/
+/*.jar
+/*.war
+
+# Maven
+/.mvn
+!/.mvn/wrapper/maven-wrapper.jar
+
+# Node
+/node_modules
+/dist
+/build
+
+# IDEs
+/.idea
+/.vscode
+*.iml
+
+# OS
+.DS_Store
