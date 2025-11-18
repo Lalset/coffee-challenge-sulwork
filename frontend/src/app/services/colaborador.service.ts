@@ -5,19 +5,20 @@ import { environment } from '../../environments/environment';
 
 import { Colaborador, ItemCafe } from './colaborador';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class ColaboradorService {
 
-  private api = environment.apiUrl;
-  private apiColaboradores = `${this.api}/colaboradores`;
-  private apiItensCafe = `${this.api}/itens-cafe`;
+  private baseUrl = environment.apiUrl;
+
+  private apiColaboradores = `${this.baseUrl}/colaboradores`;
+  private apiItensCafe = `${this.baseUrl}/itens-cafe`;
 
   constructor(private http: HttpClient) {}
 
   // COLABORADORES
+
   listar(): Observable<Colaborador[]> {
     return this.http.get<Colaborador[]>(this.apiColaboradores);
   }
@@ -40,7 +41,7 @@ export class ColaboradorService {
     });
   }
 
-  // ITENS DE CAFÉ
+  // ITENS DE CAFÉ 
 
   listarItensPorData(data: string): Observable<ItemCafe[]> {
     return this.http.get<ItemCafe[]>(`${this.apiItensCafe}/data/${data}`);
@@ -52,16 +53,12 @@ export class ColaboradorService {
     });
   }
 
-  // Atualizar Item
   atualizarItem(item: ItemCafe): Observable<string> {
-  return this.http.put(
-    `${this.apiItensCafe}/${item.id}`,
-    item,
-    { responseType: 'text' }
-  );
-}
+    return this.http.put(`${this.apiItensCafe}/${item.id}`, item, {
+      responseType: 'text'
+    });
+  }
 
-  // DELETE item
   deletarItem(id: number): Observable<string> {
     return this.http.delete(`${this.apiItensCafe}/${id}`, {
       responseType: 'text'
