@@ -11,7 +11,7 @@ export class ColaboradorService {
   private api = 
     window.location.hostname === 'localhost'
     ? 'http://localhost:8080/api'
-    : 'https:"//coffe-challenge-sulwork-production.up.railway.app/api';
+    : 'https://coffee-challenge-sulwork-production.up.railway.app/swagger-ui/index.html';
   private apiColaboradores = `${this.api}/colaboradores`;
   private apiItensCafe = `${this.api}/itens-cafe`;
 
