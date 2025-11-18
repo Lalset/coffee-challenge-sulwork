@@ -1,4 +1,3 @@
-
 FROM maven:3.9.5-eclipse-temurin-21 AS build
 
 WORKDIR /backend
@@ -19,4 +18,4 @@ COPY --from=build /backend/target/*.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["sh", "-c", "java -jar app.jar --server.port=${PORT}"]
