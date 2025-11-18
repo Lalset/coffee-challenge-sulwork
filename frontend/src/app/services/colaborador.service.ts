@@ -10,10 +10,9 @@ import { Colaborador, ItemCafe } from './colaborador';
 })
 export class ColaboradorService {
 
-  private baseUrl = environment.apiUrl;
-
-  private apiColaboradores = `${this.baseUrl}/colaboradores`;
-  private apiItensCafe = `${this.baseUrl}/itens-cafe`;
+  private api = environment.apiUrl;
+  private apiColaboradores = `${this.api}/colaboradores`;
+  private apiItensCafe = `${this.api}/itens-cafe`;
 
   constructor(private http: HttpClient) {}
 
@@ -41,7 +40,7 @@ export class ColaboradorService {
     });
   }
 
-  // ITENS DE CAFÉ 
+  // ITENS DE CAFÉ
 
   listarItensPorData(data: string): Observable<ItemCafe[]> {
     return this.http.get<ItemCafe[]>(`${this.apiItensCafe}/data/${data}`);
@@ -54,9 +53,11 @@ export class ColaboradorService {
   }
 
   atualizarItem(item: ItemCafe): Observable<string> {
-    return this.http.put(`${this.apiItensCafe}/${item.id}`, item, {
-      responseType: 'text'
-    });
+    return this.http.put(
+      `${this.apiItensCafe}/${item.id}`,
+      item,
+      { responseType: 'text' }
+    );
   }
 
   deletarItem(id: number): Observable<string> {
