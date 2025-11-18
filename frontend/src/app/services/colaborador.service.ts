@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+
 import { Colaborador, ItemCafe } from './colaborador';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColaboradorService {
 
-  private api = 
-    window.location.hostname === 'localhost'
-    ? 'http://localhost:8080/api'
-    : 'https://coffee-challenge-sulwork-production.up.railway.app/swagger-ui/index.html';
+  private api = environment.apiUrl;
   private apiColaboradores = `${this.api}/colaboradores`;
   private apiItensCafe = `${this.api}/itens-cafe`;
 
   constructor(private http: HttpClient) {}
 
   // COLABORADORES
-
   listar(): Observable<Colaborador[]> {
     return this.http.get<Colaborador[]>(this.apiColaboradores);
   }
@@ -61,8 +60,6 @@ export class ColaboradorService {
     { responseType: 'text' }
   );
 }
-
-
 
   // DELETE item
   deletarItem(id: number): Observable<string> {
