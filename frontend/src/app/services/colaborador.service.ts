@@ -8,7 +8,10 @@ import { Colaborador, ItemCafe } from './colaborador';
 })
 export class ColaboradorService {
 
-  private api = 'http://localhost:8080/api';
+  private api = 
+    window.location.hostname === 'localhost'
+    ? 'http://localhost:8080/api'
+    : 'https:"//coffe-challenge-sulwork-production.up.railway.app/api';
   private apiColaboradores = `${this.api}/colaboradores`;
   private apiItensCafe = `${this.api}/itens-cafe`;
 
@@ -61,7 +64,7 @@ export class ColaboradorService {
 
 
 
-  // === DELETE item
+  // DELETE item
   deletarItem(id: number): Observable<string> {
     return this.http.delete(`${this.apiItensCafe}/${id}`, {
       responseType: 'text'
